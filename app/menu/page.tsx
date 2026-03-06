@@ -253,24 +253,24 @@ function MenuContent({
     salads: [
       {
         id: 601,
-        name: "Greek Salad",
-        price: "₹499",
-        image: "/tandoori-meat-bbq.jpg",
+        name: "Grill Chicken Salads",
+        price: "₹270",
+        image: "/gcsalad.jpg",
       },
       {
         id: 602,
-        name: "Quinoa Power Bowl",
-        price: "₹599",
-        image: "/biryani-rice.jpg",
+        name: "Hawaiian Chicken salads",
+        price: "₹290",
+        image: "/hcsalad.jpg",
+      },
+      {
+        id: 602,
+        name: "Veg Garden Rich Salads",
+        price: "₹190",
+        image: "/vsalad.jpg",
       },
     ],
     soups: [
-      {
-        id: 501,
-        name: "Tomato Basil Soup",
-        price: "₹299",
-        image: "/classic-chicken-curry-rice.jpg",
-      },
       {
         id: 502,
         name: "Mushroom Bisque",
@@ -310,25 +310,25 @@ function MenuContent({
       {
         id: 1201,
         name: "Veg Wrap",
-        price: "₹199",
+        price: "₹90",
         image: "/vwrap.jpg",
       },
       {
         id: 1202,
         name: "Crispy chicken Wrap",
-        price: "₹179",
+        price: "₹160",
         image: "/ccwrap.jpg",
       },
       {
         id: 1203,
         name: "Chicken Tikka wrap",
-        price: "₹189",
+        price: "₹150",
         image: "/twrap.jpg",
       },
       {
         id: 1204,
         name: "Peri peri Grill chicken Wrap",
-        price: "₹169",
+        price: "₹170",
         image: "/pwrap.jpg",
       },
     ],
