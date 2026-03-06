@@ -13,7 +13,7 @@ function MenuContent({
   onNavigate?: (page: string) => void
   addToCart?: (dish: { id: number; name: string; price: string }) => void
 }) {
-  const [selectedCategory, setSelectedCategory] = useState("appetizers")
+  const [selectedCategory, setSelectedCategory] = useState("Starters")
   const [searchQuery, setSearchQuery] = useState("")
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const cartCount = cart?.length || 0
