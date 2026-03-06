@@ -74,7 +74,7 @@ function MenuContent({
         id: 3,
         name: "Veg Sandwich",
         price: "₹170",
-        image: "/vegSand.jpg",
+        image: "/vegsand.jpg",
       },
       {
         id: 4,
