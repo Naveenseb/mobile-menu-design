@@ -83,15 +83,6 @@ export function Header({ cartCount = 0 }: HeaderProps) {
               <h1 className="cafe-name">4MUG</h1>
               <span className="cafe-tagline">only 4 you</span>
             </div>
-
-            {/* Cart Count */}
-            {cartCount > 0 && (
-              <div className="absolute right-6 flex items-center justify-center">
-                <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">{cartCount}</span>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </header>

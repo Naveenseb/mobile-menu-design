@@ -45,8 +45,10 @@ const menuData = {
   ],
 }
 
+type CartItem = { id: number; name: string; price: string; quantity: number }
+
 export default function HomePage() {
-  const [cart, setCart] = useState<Array<{ id: number; name: string; price: string }>>([])
+  const [cart, setCart] = useState<CartItem[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [currentPage, setCurrentPage] = useState("home")
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0)
@@ -67,7 +69,15 @@ export default function HomePage() {
   ]
 
   const addToCart = (dish: { id: number; name: string; price: string }) => {
-    setCart((prev: Array<{ id: number; name: string; price: string }>) => [...prev, dish])
+    setCart((prev: CartItem[]) => {
+      const existing = prev.find((item) => item.id === dish.id)
+      if (existing) {
+        return prev.map((item) =>
+          item.id === dish.id ? { ...item, quantity: item.quantity + 1 } : item,
+        )
+      }
+      return [...prev, { ...dish, quantity: 1 }]
+    })
   }
 
   const filteredTopSelling = menuData.topSelling.filter(
@@ -96,7 +106,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background pb-20">
-      <Header cartCount={cart.length} />
+      <Header
+        cartCount={cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
+      />
 
       <div className="px-4 py-4">
         <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl h-40 flex items-center justify-center text-white font-bold text-lg overflow-hidden shadow-md relative">
@@ -155,7 +167,11 @@ export default function HomePage() {
         </section>
       </div>
 
-      <Navigation cartCount={cart.length} currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Navigation
+        cartCount={cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
+        currentPage={currentPage}
+        onNavigate={setCurrentPage}
+      />
     </div>
   )
 }

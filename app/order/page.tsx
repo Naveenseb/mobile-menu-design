@@ -6,13 +6,14 @@ import { Header } from "@/components/header"
 import { Trash2 } from "lucide-react"
 
 interface OrderPageProps {
-  cartItems?: Array<{ id: number; name: string; price: string }>
+  cartItems?: Array<{ id: number; name: string; price: string; quantity: number }>
   onNavigate?: (page: string) => void
-  setCart?: (cart: Array<{ id: number; name: string; price: string }>) => void
+  setCart?: (cart: Array<{ id: number; name: string; price: string; quantity: number }>) => void
 }
 
 export default function OrderPage({ cartItems = [], onNavigate = () => {}, setCart = () => {} }: OrderPageProps) {
   const [localCart, setLocalCart] = useState(cartItems)
+  const cartCount = localCart.reduce((sum, item) => sum + (item.quantity || 1), 0)
 
   const handleRemoveItem = (index: number) => {
     const updatedCart = localCart.filter((_, i) => i !== index)
@@ -41,7 +42,7 @@ export default function OrderPage({ cartItems = [], onNavigate = () => {}, setCa
 
   return (
     <div className="min-h-screen bg-background pb-20">
-      <Header cartCount={localCart.length} />
+      <Header cartCount={cartCount} />
       <div className="px-4 py-8">
         <h1 className="text-2xl font-bold text-foreground mb-6">Your Order</h1>
 
@@ -67,6 +68,7 @@ export default function OrderPage({ cartItems = [], onNavigate = () => {}, setCa
                   <div>
                     <p className="font-semibold text-foreground text-sm">{item.name}</p>
                     <p className="text-sm text-orange-600 font-bold">{item.price}</p>
+                    <p className="text-xs text-neutral-500">Qty: {item.quantity || 1}</p>
                   </div>
                   <button
                     onClick={() => handleRemoveItem(index)}
@@ -95,7 +97,7 @@ export default function OrderPage({ cartItems = [], onNavigate = () => {}, setCa
           </>
         )}
       </div>
-      <Navigation cartCount={localCart.length} currentPage="order" onNavigate={onNavigate} />
+      <Navigation cartCount={cartCount} currentPage="order" onNavigate={onNavigate} />
     </div>
   )
 }

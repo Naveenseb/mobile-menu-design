@@ -19,7 +19,11 @@ function MenuContent({
   const [localCart, setLocalCart] = useState(cart.map(item => ({ ...item, quantity: item.quantity || 1 })))
 
   const handleAddToCart = (dish: { id: number; name: string; price: string }) => {
-    setLocalCart(prev => {
+    // Update global cart via prop (if provided)
+    addToCart?.(dish)
+
+    // Keep local cart in sync for quantity display/logic
+    setLocalCart((prev) => {
       const existing = prev.find(item => item.id === dish.id)
       if (existing) {
         return prev.map(item => 
@@ -603,11 +607,11 @@ export default function MenuPage({
   onNavigate = () => {},
   addToCart = () => {},
 }: {
-  cart?: Array<{ id: number; name: string; price: string }>
+  cart?: Array<{ id: number; name: string; price: string; quantity: number }>
   onNavigate?: (page: string) => void
   addToCart?: (dish: { id: number; name: string; price: string }) => void
 }) {
-  const cartCount = cart?.length || 0
+  const cartCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0)
 
   return (
     <div className="min-h-screen bg-background pb-20">
