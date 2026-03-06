@@ -13,12 +13,56 @@ function MenuContent({
   onNavigate?: (page: string) => void
   addToCart?: (dish: { id: number; name: string; price: string }) => void
 }) {
-  const [selectedCategory, setSelectedCategory] = useState("burgers")
+  const [selectedCategory, setSelectedCategory] = useState("appetizers")
   const [searchQuery, setSearchQuery] = useState("")
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const cartCount = cart?.length || 0
 
   const menuItems = {
+    mains: [
+      {
+        id: 901,
+        name: "Chicken Biriyani",
+        price: "₹450",
+        image: "/cbiriyani.jpg",
+      },
+      {
+        id: 902,
+        name: "Beef Biriyani",
+        price: "₹500",
+        image: "/beefbiriyani.jpg",
+      },
+      {
+        id: 903,
+        name: "Veg Meals",
+        price: "₹350",
+        image: "/vegmeals.jpg",
+      },
+      {
+        id: 904,
+        name: "Non-Veg Meals",
+        price: "₹450",
+        image: "/nonvegmeals.jpg",
+      },
+      {
+        id: 905,
+        name: "Kappa Biriyani",
+        price: "₹400",
+        image: "/kbiriyani.jpg",
+      },
+      {
+        id: 906,
+        name: "Kappa Fish Curry",
+        price: "₹380",
+        image: "/kfish.jpg",
+      },
+      {
+        id: 907,
+        name: "Neychoru Beef/Chicken Stew",
+        price: "₹480",
+        image: "/neychoru.jpg",
+      },
+    ],
     burgers: [
       {
         id: 104,
@@ -133,7 +177,7 @@ function MenuContent({
         image: "/mfamload.jpg",
       },
     ],
-    appetizers: [
+    Starters: [
       {
         id: 801,
         name: "Chicken nuggets 6pc",
@@ -177,20 +221,7 @@ function MenuContent({
         image: "/dynprawstart.jpg",
       },
     ],
-    mains: [
-      {
-        id: 901,
-        name: "Butter Chicken",
-        price: "₹749",
-        image: "/biryani-rice.jpg",
-      },
-      {
-        id: 902,
-        name: "Paneer Tikka Masala",
-        price: "₹699",
-        image: "/butter-chicken.png",
-      },
-    ],
+    
     rice: [
       {
         id: 1001,
@@ -275,18 +306,99 @@ function MenuContent({
         image: "/garlic-bread-naan.jpg",
       },
     ],
+    wraps: [
+      {
+        id: 1201,
+        name: "Chicken Shawarma Wrap",
+        price: "₹199",
+        image: "/shawarmawrap.jpg",
+      },
+      {
+        id: 1202,
+        name: "Paneer Wrap",
+        price: "₹179",
+        image: "/paneerwrap.jpg",
+      },
+    ],
+    frenchFries: [
+      {
+        id: 1301,
+        name: "Regular Fries",
+        price: "₹99",
+        image: "/regularfries.jpg",
+      },
+      {
+        id: 1302,
+        name: "Curry Fries",
+        price: "₹129",
+        image: "/curryfries.jpg",
+      },
+    ],
+    momos: [
+      {
+        id: 1401,
+        name: "CHICKEN STEAM  (S/F)",
+        price: "₹80/90",
+        image: "/cmomos.jpg",
+      },
+      {
+        id: 1402,
+        name: "CHICKEN CHEESE  (S/F)",
+        price: "₹90/100",
+        image: "/chmomos.jpg",
+      },
+      {
+        id: 1403,
+        name: "CHICKEN KURKURE (F)",
+        price: "₹110/120",
+        image: "/kmomos.jpg",
+      },
+      {
+        id: 1404,
+        name: "CHICKEN SCHEZWAN(S/F)",
+        price: "₹100/110",
+        image: "/scmomos.jpg",
+      },
+      {
+        id: 1405,
+        name: "CHICKEN TIKKA (S/F)",
+        price: "₹90/100",
+        image: "/tmomos.jpg",
+      },
+      {
+        id: 1406,
+        name: "VEG. MIX (S/F)",
+        price: "₹80/90",
+        image: "/vmomos.jpg",
+      },
+      {
+        id: 1407,
+        name: "BUTTER CHICKEN (S/F)",
+        price: "₹100/110",
+        image: "/bmomos.jpg",
+      },
+    ],
+    fourMigSpecial: [
+      {
+        id: 1501,
+        name: "4Mig Special Burger",
+        price: "₹299",
+        image: "/4migspecial.jpg",
+      },
+    ],
   }
 
   const foodSubcategories = [
+    { id: "Starters", label: "Starters" },
+    { id: "mains", label: "Main" },
     { id: "burgers", label: "Burgers" },
-    { id: "sandwich", label: "Sandwich" },
     { id: "loadedFries", label: "Loaded Fries" },
-    { id: "appetizers", label: "Starters" },
-    { id: "mains", label: "Mains" },
-    { id: "rice", label: "Rice" },
-    { id: "breads", label: "Breads" },
+    { id: "wraps", label: "Wraps" },
+    { id: "sandwich", label: "Sandwiches" },
+    { id: "frenchFries", label: "French Fries" },
+    { id: "momos", label: "Momos" },
     { id: "salads", label: "Salads" },
-    { id: "soups", label: "Soups" },
+    { id: "fourMigSpecial", label: "4Mug Special" },
   ]
 
   const beveragesSubcategories = [
