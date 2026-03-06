@@ -22,37 +22,109 @@ function MenuContent({
     burgers: [
       {
         id: 104,
-        name: "Burger Royal",
-        description: "Bacon burger with Swiss cheese",
-        price: "₹1099",
+        name: "Classic chicken Burger",
+        description: "",
+        price: "₹120",
         allergens: "Contains gluten, lactose, sesame",
-        image: "/biryani-rice.jpg",
+        image: "/ccb.jpg",
       },
       {
         id: 1,
-        name: "Classic Cheeseburger",
+        name: "Chicken zinger Burger",
         description: "Juicy beef patty with melted cheddar",
-        price: "₹899",
+        price: "₹170",
         allergens: "Contains gluten, lactose",
-        image: "/biryani-rice.jpg",
+        image: "/czb.jpg",
+      },
+      {
+        id: 2,
+        name: "Grills Chicken Burger",
+        description: "Beef patty with jalapeños and spicy sauce",
+        price: "₹190",
+        allergens: "Contains gluten, lactose",
+        image: "/gcb.jpg",
+      },
+      {
+        id: 3,
+        name: "Avocado Grill chicken Burger",
+        description: "Plant-based patty with fresh veggies",
+        price: "₹220",
+        allergens: "Contains gluten",
+        image: "/agcb.jpg",
+      },
+      {
+        id: 4,
+        name: "BBQ Grills chicken Burger",
+        description: "Smoky BBQ sauce with crispy bacon",
+        price: "₹999",
+        allergens: "Contains gluten, lactose",
+        image: "/bbqb.jpg",
+      },
+      {
+        id: 5,
+        name: "Classic Veg patty Burger",
+        description: "Beef patty with sautéed mushrooms and Swiss cheese",
+        price: "₹90",
+        allergens: "Contains gluten, lactose",
+        image: "/classicVeg.jpg",
+      },
+      {
+        id: 6,
+        name: "4 Mug Spl jumbo Burger",
+        description: "Two beef patties with double cheese",
+        price: "₹270",
+        allergens: "Contains gluten, lactose",
+        image: "/spzllBur.jpg",
       },
     ],
     sandwich: [
       {
         id: 2,
-        name: "Grilled Chicken Sandwich",
+        name: "Cheesy Corn Sandwich",
         description: "Chicken breast with fresh vegetables",
-        price: "₹799",
+        price: "₹160",
         allergens: "Contains gluten",
-        image: "/butter-chicken.png",
+        image: "/ccsand.jpg",
       },
       {
         id: 3,
-        name: "Paneer Sandwich",
+        name: "Veg Sandwich ",
         description: "Crispy paneer with mint chutney",
-        price: "₹699",
+        price: "₹170",
         allergens: "Contains gluten, lactose",
-        image: "/paneer-cheese-dish.jpg",
+        image: "/vegSand.jpg",
+      },
+      {
+        id: 4,
+        name: "Chicken Tikka Sandwich",
+        description: "Mixed vegetables with special sauce",
+        price: "₹210",
+        allergens: "Contains gluten",
+        image: "/ctsand.jpg",
+      },
+      {
+        id: 5,
+        name: "Grill Chicken Sandwich",
+        description: "Spiced tandoori chicken with yogurt",
+        price: "₹190",
+        allergens: "Contains gluten, lactose",
+        image: "/gcsand.jpg",
+      },
+      {
+        id: 6,
+        name: "Peri peri Grill Chicken Sandwich",
+        description: "Paneer with schezwan sauce",
+        price: "₹210",
+        allergens: "Contains gluten, lactose",
+        image: "/perisand.jpg",
+      },
+      {
+        id: 7,
+        name: "4 Mug Spl Club Sandwich",
+        description: "Grilled chicken with BBQ sauce",
+        price: "₹270",
+        allergens: "Contains gluten, lactose",
+        image: "/spzlsand.jpg",
       },
     ],
     loadedFries: [
@@ -357,8 +429,6 @@ function MenuContent({
                 <div className="flex-1 flex flex-col justify-between min-w-0">
                   <div>
                     <h3 className="font-semibold text-slate-900 text-sm mb-1 line-clamp-2">{item.name}</h3>
-                    <p className="text-xs text-slate-600 mb-1 line-clamp-1">{item.description}</p>
-                    <p className="text-xs text-slate-500">{item.allergens}</p>
                   </div>
                   <div className="flex items-center justify-between mt-2">
                     <p className="font-bold text-red-600 text-base">{item.price}</p>
