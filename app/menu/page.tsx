@@ -442,80 +442,84 @@ function MenuContent({
       </div>
 
       {/* Search & Filters Section */}
-      <div className="sticky top-16 z-40 bg-white border-b border-slate-200 shadow-sm">
-        <div className="px-4 py-4">
-          {/* Search Bar */}
-          <div className="flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3 mb-4 border border-slate-200 focus-within:border-red-600 focus-within:bg-white transition">
-            <Search className="w-5 h-5 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search dishes..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-transparent outline-none flex-1 text-sm text-slate-700 placeholder-slate-400"
-            />
-          </div>
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-lg">
+        <div className="px-3 py-2">
+          {/* Search Bar and Dropdowns in same row */}
+          <div className="flex gap-2 items-center">
+            {/* Search Bar */}
+            <div className="flex items-center gap-2 bg-slate-100 rounded-full px-3 py-2 border border-slate-200 focus-within:border-red-400 focus-within:bg-white focus-within:shadow-md transition-all" style={{width: '60%'}}>
+              <Search className="w-4 h-4 text-slate-500" />
+              <input
+                type="text"
+                placeholder="Search dishes..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="bg-transparent outline-none flex-1 text-sm text-slate-700 placeholder-slate-500"
+              />
+            </div>
 
-          {/* Food and Beverages Dropdowns */}
-          <div className="flex gap-3">
             {/* Food Dropdown */}
-            <div className="relative flex-1">
+            <div className="relative">
               <button
                 onClick={() => setOpenDropdown(openDropdown === "food" ? null : "food")}
-                className="w-full flex items-center justify-between px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg font-medium text-sm hover:shadow-lg transition-all"
+                className="flex items-center gap-1 px-3 py-2 bg-white border border-slate-300 rounded-full font-medium text-sm text-slate-700 hover:border-red-400 hover:shadow-md transition-all"
               >
-                <span>🍔 Food</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openDropdown === "food" ? "rotate-180" : ""}`} />
+                <span>Food</span>
+                <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${openDropdown === "food" ? "rotate-180" : ""}`} />
               </button>
               {openDropdown === "food" && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden">
-                  {foodSubcategories.map((cat, idx) => (
-                    <button
-                      key={cat.id}
-                      onClick={() => {
-                        setSelectedCategory(cat.id)
-                        setOpenDropdown(null)
-                      }}
-                      className={`w-full text-left px-4 py-3 text-sm transition-colors ${
-                        selectedCategory === cat.id
-                          ? "bg-red-50 text-red-700 font-semibold"
-                          : "text-slate-700 hover:bg-slate-50"
-                      } ${idx !== foodSubcategories.length - 1 ? "border-b border-slate-100" : ""}`}
-                    >
-                      {cat.label}
-                    </button>
-                  ))}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden">
+                  <div className="grid grid-cols-2 gap-0">
+                    {foodSubcategories.map((cat, idx) => (
+                      <button
+                        key={cat.id}
+                        onClick={() => {
+                          setSelectedCategory(cat.id)
+                          setOpenDropdown(null)
+                        }}
+                        className={`w-full text-left px-4 py-3 text-sm transition-colors ${
+                          selectedCategory === cat.id
+                            ? "bg-red-50 text-red-700 font-semibold"
+                            : "text-slate-700 hover:bg-slate-50"
+                        } ${idx % 2 === 0 ? "border-r border-slate-100" : ""} ${idx < foodSubcategories.length - 2 ? "border-b border-slate-100" : ""}`}
+                      >
+                        {cat.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
 
             {/* Beverages Dropdown */}
-            <div className="relative flex-1">
+            <div className="relative">
               <button
                 onClick={() => setOpenDropdown(openDropdown === "beverages" ? null : "beverages")}
-                className="w-full flex items-center justify-between px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg font-medium text-sm hover:shadow-lg transition-all"
+                className="flex items-center gap-1 px-3 py-2 bg-white border border-slate-300 rounded-full font-medium text-sm text-slate-700 hover:border-red-400 hover:shadow-md transition-all"
               >
-                <span>🥤 Beverages</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openDropdown === "beverages" ? "rotate-180" : ""}`} />
+                <span>Beverages</span>
+                <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${openDropdown === "beverages" ? "rotate-180" : ""}`} />
               </button>
               {openDropdown === "beverages" && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden">
-                  {beveragesSubcategories.map((cat, idx) => (
-                    <button
-                      key={cat.id}
-                      onClick={() => {
-                        setSelectedCategory(cat.id)
-                        setOpenDropdown(null)
-                      }}
-                      className={`w-full text-left px-4 py-3 text-sm transition-colors ${
-                        selectedCategory === cat.id
-                          ? "bg-red-50 text-red-700 font-semibold"
-                          : "text-slate-700 hover:bg-slate-50"
-                      } ${idx !== beveragesSubcategories.length - 1 ? "border-b border-slate-100" : ""}`}
-                    >
-                      {cat.label}
-                    </button>
-                  ))}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-32 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden">
+                  <div className="grid grid-cols-1 gap-0">
+                    {beveragesSubcategories.map((cat, idx) => (
+                      <button
+                        key={cat.id}
+                        onClick={() => {
+                          setSelectedCategory(cat.id)
+                          setOpenDropdown(null)
+                        }}
+                        className={`w-full text-left px-4 py-3 text-sm transition-colors ${
+                          selectedCategory === cat.id
+                            ? "bg-red-50 text-red-700 font-semibold"
+                            : "text-slate-700 hover:bg-slate-50"
+                        } ${idx !== beveragesSubcategories.length - 1 ? "border-b border-slate-100" : ""}`}
+                      >
+                        {cat.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
