@@ -9,14 +9,31 @@ function MenuContent({
   onNavigate = () => {},
   addToCart = () => {},
 }: {
-  cart?: Array<{ id: number; name: string; price: string }>
+  cart?: Array<{ id: number; name: string; price: string; quantity?: number }>
   onNavigate?: (page: string) => void
   addToCart?: (dish: { id: number; name: string; price: string }) => void
 }) {
   const [selectedCategory, setSelectedCategory] = useState("Starters")
   const [searchQuery, setSearchQuery] = useState("")
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const cartCount = cart?.length || 0
+  const [localCart, setLocalCart] = useState(cart.map(item => ({ ...item, quantity: item.quantity || 1 })))
+
+  const handleAddToCart = (dish: { id: number; name: string; price: string }) => {
+    setLocalCart(prev => {
+      const existing = prev.find(item => item.id === dish.id)
+      if (existing) {
+        return prev.map(item => 
+          item.id === dish.id 
+            ? { ...item, quantity: (item.quantity || 1) + 1 } 
+            : item
+        )
+      } else {
+        return [...prev, { ...dish, quantity: 1 }]
+      }
+    })
+  }
+
+  const cartCount = localCart.reduce((sum, item) => sum + (item.quantity || 1), 0)
 
   const menuItems = {
     mains: [
@@ -548,12 +565,12 @@ function MenuContent({
                 {/* Content */}
                 <div className="flex-1 flex flex-col justify-between min-w-0">
                   <div>
-                    <h3 className="font-semibold text-slate-900 text-sm mb-1 line-clamp-2">{item.name}</h3>
+                    <h3 className="font-semibold text-slate-900 text-base mb-1 line-clamp-2">{item.name}</h3>
                   </div>
                   <div className="flex items-center justify-between mt-2">
-                    <p className="font-bold text-red-600 text-base">{item.price}</p>
+                    <p className="font-bold text-red-600 text-lg">{item.price}</p>
                     <button
-                      onClick={() => addToCart(item)}
+                      onClick={() => handleAddToCart(item)}
                       className="flex items-center gap-1 px-3 py-1.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:shadow-lg transition-all text-xs font-medium"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
