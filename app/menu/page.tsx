@@ -396,12 +396,12 @@ function MenuContent({
         image: "/bmomos.jpg",
       },
     ],
-    fourMigSpecial: [
+    fourMugSpecial: [
       {
         id: 1501,
-        name: "4Mig Special Burger",
-        price: "₹299",
-        image: "/4migspecial.jpg",
+        name: "FRIED ICE-CREAM",
+        price: "₹170",
+        image: "/fice.jpg",
       },
     ],
   }
@@ -416,7 +416,7 @@ function MenuContent({
     { id: "frenchFries", label: "French Fries" },
     { id: "momos", label: "Momos" },
     { id: "salads", label: "Salads" },
-    { id: "fourMigSpecial", label: "4Mug Special" },
+    { id: "fourMugSpecial", label: "4Mug Special" },
   ]
 
   const beveragesSubcategories = [
