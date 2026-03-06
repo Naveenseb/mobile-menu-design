@@ -1,6 +1,7 @@
 "use client"
 
 import { ShoppingCart } from "lucide-react"
+import { getImagePath } from "@/lib/image-path"
 
 interface Dish {
   id: number
@@ -19,7 +20,7 @@ export function DishCard({ dish, onAddCart }: DishCardProps) {
     <div className="bg-white rounded-lg overflow-hidden border border-border hover:shadow-md transition">
       {/* Image */}
       <div className="relative w-full aspect-square bg-neutral-100 overflow-hidden">
-        <img src={dish.image || "/placeholder.svg"} alt={dish.name} className="w-full h-full object-cover" />
+        <img src={getImagePath(dish.image || "/placeholder.svg")} alt={dish.name} className="w-full h-full object-cover" />
       </div>
 
       <div className="p-3 space-y-2">

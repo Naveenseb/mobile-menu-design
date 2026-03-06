@@ -5,6 +5,7 @@ import { Search } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { DishCard } from "@/components/dish-card"
 import { Header } from "@/components/header"
+import { getImagePath } from "@/lib/image-path"
 import MenuPage from "./menu/page"
 import OrderPage from "./order/page"
 // import { SplashScreen } from "@/components/splash-screen"
@@ -59,10 +60,10 @@ export default function HomePage() {
   }, [])
 
   const banners = [
-    "/restaurant-promotional-banner-offers.jpg",
-    "/classic-chicken-curry-rice.jpg",
-    "/butter-chicken.png",
-    "/biryani-rice.jpg",
+    getImagePath("/restaurant-promotional-banner-offers.jpg"),
+    getImagePath("/classic-chicken-curry-rice.jpg"),
+    getImagePath("/butter-chicken.png"),
+    getImagePath("/biryani-rice.jpg"),
   ]
 
   const addToCart = (dish: { id: number; name: string; price: string }) => {
@@ -100,7 +101,7 @@ export default function HomePage() {
       <div className="px-4 py-4">
         <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl h-40 flex items-center justify-center text-white font-bold text-lg overflow-hidden shadow-md relative">
           <img
-            src={banners[currentBannerIndex] || "/placeholder.svg"}
+            src={getImagePath(banners[currentBannerIndex] || "/placeholder.svg")}
             alt={`Banner ${currentBannerIndex + 1}`}
             className="w-full h-full object-cover"
           />

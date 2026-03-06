@@ -1,10 +1,12 @@
+import { getImagePath } from "@/lib/image-path"
+
 export function PromoCard() {
   return (
     <div className="mx-0 bg-gradient-to-r from-orange-600 to-orange-700 rounded-xl overflow-hidden shadow-sm">
       <div className="flex items-stretch h-24">
         {/* Image */}
         <div className="w-24 h-24 bg-black/20 flex-shrink-0 flex items-center justify-center overflow-hidden">
-          <img src="/food-dish-appetizer.jpg" alt="Promo" className="w-full h-full object-cover" />
+          <img src={getImagePath("/food-dish-appetizer.jpg")} alt="Promo" className="w-full h-full object-cover" />
         </div>
 
         {/* Text Content */}
