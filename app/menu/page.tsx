@@ -309,29 +309,47 @@ function MenuContent({
     wraps: [
       {
         id: 1201,
-        name: "Chicken Shawarma Wrap",
+        name: "Veg Wrap",
         price: "₹199",
-        image: "/shawarmawrap.jpg",
+        image: "/vwrap.jpg",
       },
       {
         id: 1202,
-        name: "Paneer Wrap",
+        name: "Crispy chicken Wrap",
         price: "₹179",
-        image: "/paneerwrap.jpg",
+        image: "/ccwrap.jpg",
+      },
+      {
+        id: 1203,
+        name: "Chicken Tikka wrap",
+        price: "₹189",
+        image: "/twrap.jpg",
+      },
+      {
+        id: 1204,
+        name: "Peri peri Grill chicken Wrap",
+        price: "₹169",
+        image: "/pwrap.jpg",
       },
     ],
     frenchFries: [
       {
         id: 1301,
         name: "Regular Fries",
-        price: "₹99",
-        image: "/regularfries.jpg",
+        price: "₹90",
+        image: "/rfries.jpg",
       },
       {
         id: 1302,
-        name: "Curry Fries",
-        price: "₹129",
-        image: "/curryfries.jpg",
+        name: "PERI PERI FRENCH FRIES",
+        price: "₹110",
+        image: "/pfries.jpg",
+      },
+      {
+        id: 1303,
+        name: "MASALA FRENCH FRIES",
+        price: "₹110",
+        image: "/mfries.jpg",
       },
     ],
     momos: [
