@@ -299,33 +299,71 @@ function MenuContent({
         image: "/paneer-cheese-dish.jpg",
       },
     ],
-    drinks: [
-      {
-        id: 201,
-        name: "Fresh Lemonade",
-        price: "₹350",
-        image: "/tea-chai-beverage.jpg",
-      },
-      {
-        id: 202,
-        name: "Iced Coffee",
-        price: "₹400",
-        image: "/tea-chai-beverage.jpg",
-      },
+    // Beverages - 10 main categories
+    hotBeverages: [
+      { id: 2001, name: "Coffee", price: "₹20", image: "/coffee.jpg" },
+      { id: 2002, name: "Tea", price: "₹12", image: "/tea.jpg" },
+      { id: 2003, name: "Black Tea", price: "₹10", image: "/blacktea.jpg" },
+      { id: 2004, name: "Mint Tea", price: "₹12", image: "/minttea.jpg" },
+      { id: 2005, name: "Lemon Tea", price: "₹15", image: "/lemtea.jpg" },
+      { id: 2006, name: "Cardamom", price: "₹15", image: "/cartea.jpg" },
+      { id: 2007, name: "Ginger", price: "₹15", image: "/gintea.jpg" },
+      { id: 2008, name: "Masala", price: "₹15", image: "/mastea.jpg" },
     ],
-    desserts: [
-      {
-        id: 301,
-        name: "Chocolate Cake",
-        price: "₹499",
-        image: "/full-meal-thali.jpg",
-      },
-      {
-        id: 302,
-        name: "Vanilla Panna Cotta",
-        price: "₹449",
-        image: "/garlic-bread-naan.jpg",
-      },
+    floralTeas: [
+      { id: 2101, name: "Lavender", price: "₹35", image: "/lavtea.jpg" },
+      { id: 2102, name: "Blue Pea Tea", price: "₹30", image: "/blueptea.jpg" },
+      { id: 2103, name: "Hibiscus Tea", price: "₹30", image: "/hibtea.jpg" },
+      { id: 2104, name: "Lemon Grass Tea", price: "₹20", image: "/lgtea.jpg" },
+    ],
+    herbalTeas: [
+      { id: 2201, name: "Kashmiri Khawa", price: "₹150", image: "/tea-chai-beverage.jpg" },
+      { id: 2202, name: "Digestion Tea", price: "₹120", image: "/tea-chai-beverage.jpg" },
+      { id: 2203, name: "Lemon Mint Green Tea", price: "₹110", image: "/tea-chai-beverage.jpg" },
+      { id: 2204, name: "Mens Health Tea", price: "₹140", image: "/tea-chai-beverage.jpg" },
+      { id: 2205, name: "Throat & Lungs Care Tea", price: "₹130", image: "/tea-chai-beverage.jpg" },
+      { id: 2206, name: "Weight Loss Tea", price: "₹125", image: "/tea-chai-beverage.jpg" },
+      { id: 2207, name: "Jasmine Tea", price: "₹115", image: "/tea-chai-beverage.jpg" },
+    ],
+    freshLime: [
+      { id: 2301, name: "Normal", price: "₹60", image: "/tea-chai-beverage.jpg" },
+      { id: 2302, name: "Grape", price: "₹80", image: "/tea-chai-beverage.jpg" },
+      { id: 2303, name: "Pineapple", price: "₹85", image: "/tea-chai-beverage.jpg" },
+      { id: 2304, name: "Orange", price: "₹80", image: "/tea-chai-beverage.jpg" },
+      { id: 2305, name: "Mint Lime", price: "₹70", image: "/tea-chai-beverage.jpg" },
+      { id: 2306, name: "Ginger Lime", price: "₹70", image: "/tea-chai-beverage.jpg" },
+      { id: 2307, name: "Blue Light", price: "₹90", image: "/tea-chai-beverage.jpg" },
+      { id: 2308, name: "Dark Light", price: "₹90", image: "/tea-chai-beverage.jpg" },
+      { id: 2309, name: "Freshlime Soda", price: "₹75", image: "/tea-chai-beverage.jpg" },
+      { id: 2310, name: "4 Mug Special", price: "₹100", image: "/tea-chai-beverage.jpg" },
+    ],
+    freshJuice: [
+      { id: 2401, name: "Watermelon", price: "₹90", image: "/tea-chai-beverage.jpg" },
+      { id: 2402, name: "Pineapple", price: "₹100", image: "/tea-chai-beverage.jpg" },
+      { id: 2403, name: "Orange", price: "₹95", image: "/tea-chai-beverage.jpg" },
+      { id: 2404, name: "Carrot", price: "₹85", image: "/tea-chai-beverage.jpg" },
+      { id: 2405, name: "Grape", price: "₹110", image: "/tea-chai-beverage.jpg" },
+      { id: 2406, name: "Shamam", price: "₹95", image: "/tea-chai-beverage.jpg" },
+      { id: 2407, name: "Anar", price: "₹120", image: "/tea-chai-beverage.jpg" },
+      { id: 2408, name: "Avacado", price: "₹150", image: "/tea-chai-beverage.jpg" },
+      { id: 2409, name: "Apple", price: "₹90", image: "/tea-chai-beverage.jpg" },
+      { id: 2410, name: "ABC", price: "₹100", image: "/tea-chai-beverage.jpg" },
+      { id: 2411, name: "Mixed Fruit", price: "₹120", image: "/tea-chai-beverage.jpg" },
+    ],
+    shake: [
+      { id: 2501, name: "Shake", price: "₹120", image: "/tea-chai-beverage.jpg" },
+    ],
+    falooda: [
+      { id: 2601, name: "Falooda", price: "₹140", image: "/tea-chai-beverage.jpg" },
+    ],
+    mojito: [
+      { id: 2701, name: "Mojito", price: "₹130", image: "/tea-chai-beverage.jpg" },
+    ],
+    avilMilk: [
+      { id: 2801, name: "Avil Milk", price: "₹100", image: "/tea-chai-beverage.jpg" },
+    ],
+    smoothie: [
+      { id: 2901, name: "Smoothie", price: "₹150", image: "/tea-chai-beverage.jpg" },
     ],
     wraps: [
       {
@@ -441,8 +479,16 @@ function MenuContent({
   ]
 
   const beveragesSubcategories = [
-    { id: "drinks", label: "Drinks" },
-    { id: "desserts", label: "Desserts" },
+    { id: "hotBeverages", label: "Hot Beverages" },
+    { id: "floralTeas", label: "Floral Teas" },
+    { id: "herbalTeas", label: "Herbal Teas" },
+    { id: "freshLime", label: "Fresh Lime" },
+    { id: "freshJuice", label: "Fresh Juice" },
+    { id: "shake", label: "Shake" },
+    { id: "falooda", label: "Falooda" },
+    { id: "mojito", label: "Mojito" },
+    { id: "avilMilk", label: "Avil Milk" },
+    { id: "smoothie", label: "Smoothie" },
   ]
 
   const currentItems = menuItems[selectedCategory as keyof typeof menuItems] || []
@@ -522,8 +568,8 @@ function MenuContent({
                 <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${openDropdown === "beverages" ? "rotate-180" : ""}`} />
               </button>
               {openDropdown === "beverages" && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-32 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden">
-                  <div className="grid grid-cols-1 gap-0">
+                <div className="absolute top-full right-0 mt-2 w-56 max-w-[calc(100vw-2rem)] bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden">
+                  <div className="grid grid-cols-2 gap-0 max-h-[70vh] overflow-y-auto">
                     {beveragesSubcategories.map((cat, idx) => (
                       <button
                         key={cat.id}
@@ -531,11 +577,11 @@ function MenuContent({
                           setSelectedCategory(cat.id)
                           setOpenDropdown(null)
                         }}
-                        className={`w-full text-left px-4 py-3 text-sm transition-colors ${
+                        className={`w-full text-left px-3 py-2.5 text-xs font-medium transition-colors ${
                           selectedCategory === cat.id
-                            ? "bg-red-50 text-red-700 font-semibold"
+                            ? "bg-red-50 text-red-700"
                             : "text-slate-700 hover:bg-slate-50"
-                        } ${idx !== beveragesSubcategories.length - 1 ? "border-b border-slate-100" : ""}`}
+                        } border-b border-r border-slate-100 last:border-r-0`}
                       >
                         {cat.label}
                       </button>
