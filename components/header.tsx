@@ -39,7 +39,7 @@ export function Header({ cartCount = 0 }: HeaderProps) {
           font-size: 48px;
           font-weight: 500;
           letter-spacing: 2px;
-          color: #dc2626;
+          color:rgb(255, 255, 255);
           line-height: 1;
           text-align: center;
           text-transform: uppercase;
@@ -51,7 +51,7 @@ export function Header({ cartCount = 0 }: HeaderProps) {
           font-size: 14px;
           font-weight: 400;
           letter-spacing: 1px;
-          color: #991b1b;
+          color:rgb(255, 255, 255);
           margin-top: -6px;
           text-align: center;
           text-transform: lowercase;
@@ -63,13 +63,13 @@ export function Header({ cartCount = 0 }: HeaderProps) {
         }
       `}</style>
       
-      <header className="header-container sticky top-0 z-50 bg-white border-b border-red-600/20 shadow-md">
+      <header className="header-container sticky top-0 z-50 bg-neutral-900 border-b border-neutral-900 shadow-md">
         <div className="flex items-center justify-center px-6 py-4 relative">
           <div className="flex items-center gap-3">
             {/* Logo PNG */}
             <div className="flex-shrink-0 flex items-center justify-center">
               <Image
-                src="/log3.png"
+                src="/logo.png"
                 alt="4MUG Logo"
                 width={60}
                 height={60}
