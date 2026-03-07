@@ -8,12 +8,14 @@ function MenuContent({
   cart = [],
   onNavigate = () => {},
   addToCart = () => {},
+  initialCategory = "Starters",
 }: {
   cart?: Array<{ id: number; name: string; price: string; quantity?: number }>
   onNavigate?: (page: string) => void
   addToCart?: (dish: { id: number; name: string; price: string }) => void
+  initialCategory?: string
 }) {
-  const [selectedCategory, setSelectedCategory] = useState("Starters")
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory)
   const [searchQuery, setSearchQuery] = useState("")
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [localCart, setLocalCart] = useState(cart.map(item => ({ ...item, quantity: item.quantity || 1 })))
@@ -688,17 +690,19 @@ export default function MenuPage({
   cart = [],
   onNavigate = () => {},
   addToCart = () => {},
+  initialCategory = "Starters",
 }: {
   cart?: Array<{ id: number; name: string; price: string; quantity: number }>
   onNavigate?: (page: string) => void
   addToCart?: (dish: { id: number; name: string; price: string }) => void
+  initialCategory?: string
 }) {
   const cartCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0)
 
   return (
     <div className="min-h-screen bg-background pb-20">
       <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading menu...</div>}>
-        <MenuContent cart={cart} onNavigate={onNavigate} addToCart={addToCart} />
+        <MenuContent cart={cart} onNavigate={onNavigate} addToCart={addToCart} initialCategory={initialCategory} />
       </Suspense>
       <Navigation cartCount={cartCount} currentPage="menu" onNavigate={onNavigate} />
     </div>

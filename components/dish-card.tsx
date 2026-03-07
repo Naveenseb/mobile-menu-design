@@ -13,11 +13,15 @@ interface Dish {
 interface DishCardProps {
   dish: Dish
   onAddCart: () => void
+  onClickCard?: () => void
 }
 
-export function DishCard({ dish, onAddCart }: DishCardProps) {
+export function DishCard({ dish, onAddCart, onClickCard }: DishCardProps) {
   return (
-    <div className="bg-white rounded-lg overflow-hidden border border-border hover:shadow-md transition">
+    <div
+      className="bg-white rounded-lg overflow-hidden border border-border hover:shadow-md transition cursor-pointer"
+      onClick={onClickCard}
+    >
       {/* Image */}
       <div className="relative w-full aspect-square bg-neutral-100 overflow-hidden">
         <img src={getImagePath(dish.image || "/placeholder.svg")} alt={dish.name} className="w-full h-full object-cover" />
@@ -28,7 +32,13 @@ export function DishCard({ dish, onAddCart }: DishCardProps) {
 
         <div className="flex items-center justify-between">
           <p className="text-sm font-bold text-orange-600">{dish.price}</p>
-          <button onClick={onAddCart} className="p-1.5 bg-orange-600 rounded-lg hover:bg-orange-700 transition">
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              onAddCart()
+            }}
+            className="p-1.5 bg-orange-600 rounded-lg hover:bg-orange-700 transition"
+          >
             <ShoppingCart className="w-4 h-4 text-white" />
           </button>
         </div>

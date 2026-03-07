@@ -10,31 +10,42 @@ import MenuPage from "./menu/page"
 import OrderPage from "./order/page"
 // import { SplashScreen } from "@/components/splash-screen"
 
-const menuData = {
+type CartItem = { id: number; name: string; price: string; quantity: number }
+
+type TopSellingItem = {
+  id: number
+  name: string
+  categoryId: string
+  image: string
+}
+
+type ComboDish = { id: number; name: string; price: string; image: string }
+
+const menuData: { topSelling: TopSellingItem[]; combos: ComboDish[] } = {
   topSelling: [
     {
       id: 1,
-      name: "Classic Chicken Curry Rice",
-      price: "₹220",
-      image: "/classic-chicken-curry-rice.jpg",
+      name: "Loaded Fries",
+      categoryId: "loadedFries",
+      image: "/topselling/loadedfries.jpg",
     },
     {
       id: 2,
-      name: "Zaituni Paneer Cheese Tikka",
-      price: "₹399",
-      image: "/paneer-cheese-dish.jpg",
+      name: "Burgers",
+      categoryId: "burgers",
+      image: "/topselling/burgers.jpg",
     },
     {
       id: 3,
-      name: "Tandoori Pomegranate Kebab",
-      price: "₹649",
-      image: "/tandoori-meat-bbq.jpg",
+      name: "Momos",
+      categoryId: "momos",
+      image: "/topselling/momos.jpg",
     },
     {
       id: 4,
-      name: "Butter Chicken Supreme",
-      price: "₹499",
-      image: "/butter-chicken.png",
+      name: "Shakes",
+      categoryId: "shake",
+      image: "/topselling/shakes.jpg",
     },
   ],
   combos: [
@@ -45,12 +56,11 @@ const menuData = {
   ],
 }
 
-type CartItem = { id: number; name: string; price: string; quantity: number }
-
 export default function HomePage() {
   const [cart, setCart] = useState<CartItem[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [currentPage, setCurrentPage] = useState("home")
+  const [menuCategory, setMenuCategory] = useState<string | undefined>(undefined)
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0)
   // const [showSplash, setShowSplash] = useState(true)
 
@@ -62,9 +72,9 @@ export default function HomePage() {
   }, [])
 
   const banners = [
-    getImagePath("/restaurant-promotional-banner-offers.jpg"),
+    getImagePath("/banner/11.png"),
     getImagePath("/classic-chicken-curry-rice.jpg"),
-    getImagePath("/butter-chicken.png"),
+    getImagePath("/banner/3.png"),
     getImagePath("/biryani-rice.jpg"),
   ]
 
@@ -95,20 +105,37 @@ export default function HomePage() {
   //   return <SplashScreen onComplete={() => setShowSplash(false)} />
   // }
 
+  const handleNavigate = (page: string) => {
+    if (page !== "menu") {
+      setMenuCategory(undefined)
+    }
+    setCurrentPage(page)
+  }
+
+  const goToMenuCategory = (categoryId: string) => {
+    setMenuCategory(categoryId)
+    setCurrentPage("menu")
+  }
+
   if (currentPage === "menu") {
-    return <MenuPage cart={cart} onNavigate={setCurrentPage} addToCart={addToCart} />
+    return (
+      <MenuPage
+        cart={cart}
+        onNavigate={handleNavigate}
+        addToCart={addToCart}
+        initialCategory={menuCategory}
+      />
+    )
   }
 
   if (currentPage === "order") {
-    return <OrderPage cartItems={cart} onNavigate={setCurrentPage} setCart={setCart} />
+    return <OrderPage cartItems={cart} onNavigate={handleNavigate} setCart={setCart} />
   }
 
 
   return (
     <div className="min-h-screen bg-background pb-20">
-      <Header
-        cartCount={cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
-      />
+      <Header cartCount={cart.reduce((sum, item) => sum + (item.quantity || 1), 0)} />
 
       <div className="px-4 py-4">
         <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl h-40 flex items-center justify-center text-white font-bold text-lg overflow-hidden shadow-md relative">
@@ -139,15 +166,27 @@ export default function HomePage() {
             Top Selling {searchQuery && `(${filteredTopSelling.length})`}
           </h2>
           <div className="grid grid-cols-2 gap-3">
-            {filteredTopSelling.slice(0, 4).map((dish) => (
-              <DishCard key={dish.id} dish={dish} onAddCart={() => addToCart(dish)} />
+            {filteredTopSelling.slice(0, 4).map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => goToMenuCategory(item.categoryId)}
+                className="relative w-full overflow-hidden rounded-xl border border-orange-200 bg-neutral-100 shadow-sm hover:shadow-md hover:border-orange-400 transition"
+              >
+                <div className="relative w-full aspect-square">
+                  <img
+                    src={getImagePath(item.image || "/placeholder.jpg")}
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                  <span className="absolute bottom-2 left-2 right-2 text-xs font-semibold text-white drop-shadow">
+                    {item.name}
+                  </span>
+                </div>
+              </button>
             ))}
           </div>
-          {filteredTopSelling.length > 4 && (
-            <button className="w-full mt-4 px-4 py-2 text-orange-600 border border-orange-600 rounded-lg hover:bg-orange-50 transition font-medium text-sm">
-              View All Top Selling
-            </button>
-          )}
         </section>
 
         <section>
@@ -170,7 +209,7 @@ export default function HomePage() {
       <Navigation
         cartCount={cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
         currentPage={currentPage}
-        onNavigate={setCurrentPage}
+        onNavigate={handleNavigate}
       />
     </div>
   )
