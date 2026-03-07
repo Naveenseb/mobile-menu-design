@@ -69,7 +69,7 @@ export function Header({ cartCount = 0 }: HeaderProps) {
             {/* Logo PNG */}
             <div className="flex-shrink-0 flex items-center justify-center">
               <Image
-                src="/logo.png"
+                src="/log3.png"
                 alt="4MUG Logo"
                 width={60}
                 height={60}
