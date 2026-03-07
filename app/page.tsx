@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Search } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { DishCard } from "@/components/dish-card"
@@ -64,12 +64,8 @@ export default function HomePage() {
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0)
   // const [showSplash, setShowSplash] = useState(true)
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentBannerIndex((prev: number) => (prev + 1) % banners.length)
-    }, 30000)
-    return () => clearInterval(timer)
-  }, [])
+  const touchStartXRef = useRef<number | null>(null)
+  const touchEndXRef = useRef<number | null>(null)
 
   const banners = [
     getImagePath("/banner/11.png"),
@@ -77,6 +73,42 @@ export default function HomePage() {
     getImagePath("/banner/3.png"),
     getImagePath("/biryani-rice.jpg"),
   ]
+
+  const handleBannerTouchStart = (e: any) => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? null
+    touchEndXRef.current = null
+  }
+
+  const handleBannerTouchMove = (e: any) => {
+    touchEndXRef.current = e.touches[0]?.clientX ?? null
+  }
+
+  const handleBannerTouchEnd = () => {
+    if (touchStartXRef.current === null || touchEndXRef.current === null) return
+
+    const diff = touchStartXRef.current - touchEndXRef.current
+    const threshold = 40
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        // swipe left -> next banner
+        setCurrentBannerIndex((prev: number) => (prev + 1) % banners.length)
+      } else {
+        // swipe right -> previous banner
+        setCurrentBannerIndex((prev: number) => (prev - 1 + banners.length) % banners.length)
+      }
+    }
+
+    touchStartXRef.current = null
+    touchEndXRef.current = null
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBannerIndex((prev: number) => (prev + 1) % banners.length)
+    }, 30000)
+    return () => clearInterval(timer)
+  }, [])
 
   const addToCart = (dish: { id: number; name: string; price: string }) => {
     setCart((prev: CartItem[]) => {
@@ -138,7 +170,12 @@ export default function HomePage() {
       <Header cartCount={cart.reduce((sum, item) => sum + (item.quantity || 1), 0)} />
 
       <div className="px-4 py-4">
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl h-40 flex items-center justify-center text-white font-bold text-lg overflow-hidden shadow-md relative">
+        <div
+          className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl h-40 flex items-center justify-center text-white font-bold text-lg overflow-hidden shadow-md relative"
+          onTouchStart={handleBannerTouchStart}
+          onTouchMove={handleBannerTouchMove}
+          onTouchEnd={handleBannerTouchEnd}
+        >
           <img
             src={getImagePath(banners[currentBannerIndex] || "/placeholder.svg")}
             alt={`Banner ${currentBannerIndex + 1}`}
