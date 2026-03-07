@@ -308,9 +308,9 @@ function MenuContent({
       { id: 2003, name: "Black Tea", price: "₹10", image: "/blacktea.jpg" },
       { id: 2004, name: "Mint Tea", price: "₹12", image: "/minttea.jpg" },
       { id: 2005, name: "Lemon Tea", price: "₹15", image: "/lemtea.jpg" },
-      { id: 2006, name: "Cardamom", price: "₹15", image: "/cartea.jpg" },
-      { id: 2007, name: "Ginger", price: "₹15", image: "/gintea.jpg" },
-      { id: 2008, name: "Masala", price: "₹15", image: "/mastea.jpg" },
+      { id: 2006, name: "Cardamom Tea", price: "₹15", image: "/cartea.jpg" },
+      { id: 2007, name: "Ginger Tea", price: "₹15", image: "/gintea.jpg" },
+      { id: 2008, name: "Masala Tea", price: "₹15", image: "/mastea.jpg" },
     ],
     floralTeas: [
       { id: 2101, name: "Lavender", price: "₹35", image: "/lavtea.jpg" },
