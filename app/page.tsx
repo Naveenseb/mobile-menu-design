@@ -67,11 +67,12 @@ export default function HomePage() {
   const touchStartXRef = useRef<number | null>(null)
   const touchEndXRef = useRef<number | null>(null)
 
+  // Store raw paths and apply getImagePath only at render time
   const banners = [
-    getImagePath("/banner/11.png"),
-    getImagePath("/banner/2.png"),
-    getImagePath("/banner/3.png"),
-    getImagePath("/banner/4.png"),
+    "/banner/11.png",
+    "/banner/2.png",
+    "/banner/3.png",
+    "/banner/4.png",
   ]
 
   const handleBannerTouchStart = (e: any) => {
