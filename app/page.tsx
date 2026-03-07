@@ -69,9 +69,9 @@ export default function HomePage() {
 
   const banners = [
     getImagePath("/banner/11.png"),
-    getImagePath("/classic-chicken-curry-rice.jpg"),
+    getImagePath("/banner/2.png"),
     getImagePath("/banner/3.png"),
-    getImagePath("/biryani-rice.jpg"),
+    getImagePath("/banner/4.png"),
   ]
 
   const handleBannerTouchStart = (e: any) => {
