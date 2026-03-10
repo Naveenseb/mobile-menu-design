@@ -85,7 +85,7 @@ export default function OrderPage({ cartItems = [], onNavigate = () => {}, setCa
                 onClick={handleCheckout}
                 className="w-full px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition font-medium"
               >
-                Proceed to Checkout
+                Order Collected By Our Team
               </button>
               <button
                 onClick={() => onNavigate("home")}

@@ -9,7 +9,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "4MUG - Only 4 You",
-  description: "Digital café and restaurant menu - Order your favorite dishes",
+  description: "4MUG Thodupuzha - Digital menu - Order your favorite dishes",
   generator: "v0.app",
   icons: {
     icon: [
