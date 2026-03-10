@@ -53,7 +53,7 @@ const menuData: { topSelling: TopSellingItem[]; combos: ComboDish[] } = {
       id: 5,
       name: "Hungry Solo Combo",
       price: "₹249",
-      image: "/Combo/cc1.png",
+      image: "/Combo/Cc1.png",
       description: "Includes 1 Mexican Cheesy loaded Fries and 1 Pineapple Juice."
     },
     { 
