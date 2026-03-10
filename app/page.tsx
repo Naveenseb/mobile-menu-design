@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Search } from "lucide-react"
+import { Search, ShoppingCart } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { DishCard } from "@/components/dish-card"
 import { Header } from "@/components/header"
@@ -19,7 +19,7 @@ type TopSellingItem = {
   image: string
 }
 
-type ComboDish = { id: number; name: string; price: string; image: string }
+type ComboDish = { id: number; name: string; price: string; image: string; description?: string }
 
 const menuData: { topSelling: TopSellingItem[]; combos: ComboDish[] } = {
   topSelling: [
@@ -49,10 +49,22 @@ const menuData: { topSelling: TopSellingItem[]; combos: ComboDish[] } = {
     },
   ],
   combos: [
-    { id: 5, name: "Family Combo Pack Deluxe", price: "₹899", image: "/biryani-rice.jpg" },
-    { id: 6, name: "Combo Meal Deal Special", price: "₹649", image: "/samosa-snack-fried.jpg" },
-    { id: 7, name: "Starter Combo Platter", price: "₹499", image: "/full-meal-thali.jpg" },
-    { id: 8, name: "Weekend Family Bundle", price: "₹1299", image: "/garlic-bread-naan.jpg" },
+    { 
+      id: 5,
+      name: "Hungry Solo Combo",
+      price: "₹249",
+      image: "/Combo/cc1.png",
+      description: "Includes 1 Mexican Cheesy loaded Fries and 1 Pineapple Juice."
+    },
+    { 
+      id: 6,
+      name: "Better Together Combo",
+      price: "₹549",
+      image: "/Combo/cc2.png",
+      description: "Includes 1 Dynamite Chicken, 1 Mexican Cheesy Loaded Fries, 1 Momos and 2 Soda Lime."
+    },
+    //{ id: 7, name: "Starter Combo Platter", price: "₹499", image: "/full-meal-thali.jpg" },
+    //{ id: 8, name: "Weekend Family Bundle", price: "₹1299", image: "/garlic-bread-naan.jpg" },
   ],
 }
 
@@ -233,7 +245,38 @@ export default function HomePage() {
           </h2>
           <div className="grid grid-cols-2 gap-3">
             {filteredCombos.slice(0, 4).map((dish) => (
-              <DishCard key={dish.id} dish={dish} onAddCart={() => addToCart(dish)} />
+              <div
+                key={dish.id}
+                className="bg-white rounded-lg overflow-hidden border border-border hover:shadow-md transition"
+              >
+                <div className="relative w-full aspect-square bg-neutral-100 overflow-hidden">
+                  <img
+                    src={getImagePath(dish.image || "/placeholder.svg")}
+                    alt={dish.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="p-3 space-y-1.5">
+                  <p className="text-sm font-semibold text-foreground break-words">{dish.name}</p>
+                  {dish.description && (
+                    <p className="text-[11px] leading-snug text-neutral-600">
+                      {dish.description}
+                    </p>
+                  )}
+
+                  <div className="flex items-center justify-between pt-1">
+                    <p className="text-sm font-bold text-orange-600">{dish.price}</p>
+                    <button
+                      onClick={() => addToCart(dish)}
+                      className="p-1.5 bg-orange-600 rounded-lg hover:bg-orange-700 transition"
+                      aria-label={`Add ${dish.name} to cart`}
+                    >
+                      <ShoppingCart className="w-4 h-4 text-white" />
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
           {filteredCombos.length > 4 && (
